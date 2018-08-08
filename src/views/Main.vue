@@ -63,7 +63,7 @@
   <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
     <Row type="flex">
       <Col :span="spanLeft" class="layout-menu-left">
-      <Menu active-name="1" theme="dark" width="auto">
+      <Menu active-name="1" theme="dark" width="auto" @on-select="selectMenu">
         <div class="layout-logo-left"></div>
         <MenuItem name="1">
           <Icon type="ios-navigate" :size="iconSize"></Icon>
@@ -93,7 +93,9 @@
         </Breadcrumb>
       </div>
       <div class="layout-content">
-        <div class="layout-content-main">Content</div>
+        <div class="layout-content-main">
+          <router-view></router-view>
+        </div>
       </div>
       <div class="layout-copy">
         2011-2016        TalkingData
@@ -123,6 +125,21 @@
         } else {
           this.spanLeft = 5;
           this.spanRight = 19;
+        }
+      },
+      selectMenu(name) {
+        switch(name) {
+          case '1':
+            this.$router.push('/page1')
+            break;
+          case '2':
+            this.$router.push('/page2')
+            break;
+          case '3':
+            this.$router.push('/page3')
+            break;
+          default:
+            this.$router.push('/')
         }
       }
     }
