@@ -27,3 +27,7 @@ new Vue({
     App
   }
 })
+
+if (true) {
+  import('../config').then(c => console.log(c.dev.env))
+}
