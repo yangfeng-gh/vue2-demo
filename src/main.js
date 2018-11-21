@@ -3,10 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import iView from 'iview'
 import '@/styles/index.less'
 import Raven from 'raven-js'
 import RavenVue from 'raven-js/plugins/vue'
+
+import('../config').then(c => console.log(c.dev.env))
 
 Vue.use(iView)
 Vue.config.productionTip = false
@@ -22,12 +25,9 @@ Raven
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: {
     App
   }
 })
-
-if (true) {
-  import('../config').then(c => console.log(c.dev.env))
-}
