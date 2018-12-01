@@ -1,21 +1,21 @@
-import LStorage from "./LStorage";
+import LStorage from './LStorage'
 
 /**
  * 代理二级属性
  * @param {*} lsKey 保存在localStorage中的key
  * @param {*} pk    一级属性的key
  */
-function createHanlder(lsKey, pk) {
+function createHanlder (lsKey, pk) {
   return {
-    set: function(target, key, value, receiver) {
-      let item = LStorage.getItem(lsKey);
+    set: function (target, key, value, receiver) {
+      let item = LStorage.getItem(lsKey)
       if (item && item[pk]) {
-        item[pk][key] = value;
-        LStorage.setItem(lsKey, item);
+        item[pk][key] = value
+        LStorage.setItem(lsKey, item)
       }
-      return Reflect.set(target, key, value, receiver);
+      return Reflect.set(target, key, value, receiver)
     }
-  };
+  }
 }
 
 /**
@@ -23,15 +23,15 @@ function createHanlder(lsKey, pk) {
  * @param {*} source
  * @param {*} keys
  */
-function copy(source, keys = []) {
+function copy (source, keys = []) {
   if (!source) {
-    return source;
+    return source
   }
-  let d = Object.create(null);
+  let d = Object.create(null)
   keys.forEach(k => {
-    d[k] = source[k];
-  });
-  return d;
+    d[k] = source[k]
+  })
+  return d
 }
 
 /**
@@ -40,35 +40,33 @@ function copy(source, keys = []) {
  * @param {*} lsKey  localStorage的key
  * @param {*} keys   需要存储的键
  */
-const proxy = function(initState, lsKey, keys = []) {
-  let ks = keys,
-    obj = Object.assign({}, initState, LStorage.getItem(lsKey));
+const proxy = function (initState, lsKey, keys = []) {
+  let ks = keys
+  let obj = Object.assign({}, initState, LStorage.getItem(lsKey))
 
   // 代理二级属性
   keys.forEach(k => {
-    obj[k] = new Proxy(obj[k], createHanlder(lsKey, k));
-  });
+    obj[k] = new Proxy(obj[k], createHanlder(lsKey, k))
+  })
 
   // 存入合并的值
-  LStorage.setItem(lsKey, copy(obj, keys));
+  LStorage.setItem(lsKey, copy(obj, keys))
 
   // 返回代理对象
   return new Proxy(obj, {
-    set: function(target, key, value, receiver) {
-      ks.indexOf(key) >= 0 && LStorage.setItem(lsKey, copy(target, keys));
-      return Reflect.set(target, key, value, receiver);
+    set: function (target, key, value, receiver) {
+      ks.indexOf(key) >= 0 && LStorage.setItem(lsKey, copy(target, keys))
+      return Reflect.set(target, key, value, receiver)
     }
-  });
-};
+  })
+}
 
-export { proxy };
+export { proxy }
 
 /*
  这种方案的缺点也是很明显的，
 1. 代码只能代理二级，对我一般情况应该是够用了，扁平化state
 2. 代理二级属性和数组，要是属性频繁修改的时候，代理是会重复触发的，比如，添加30首歌曲的时候，是发生了30次存储。
-
-
 
 优点我觉得是，
 1. state的数据与localStorage的同步过程分离开

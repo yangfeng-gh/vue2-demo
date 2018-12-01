@@ -6,14 +6,14 @@ Vue.component('my-component', {
   </div>`,
   data: function () {
     return {
-      currentValue:this.value
+      currentValue: this.value
     }
   },
-  props: ['value'], //接收一个 value prop
+  props: ['value'], // 接收一个 value prop
   methods: {
-    handleInput(event) {
+    handleInput (event) {
       var value = event.target.value
-      this.$emit('input', value); //触发 input 事件，并传入新值
+      this.$emit('input', value) // 触发 input 事件，并传入新值
     }
   }
-});
+})

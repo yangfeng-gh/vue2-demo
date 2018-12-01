@@ -1,35 +1,62 @@
-// https://eslint.org/docs/user-guide/configuring
-
 module.exports = {
   root: true,
+  installedESLint: true,
+  extends: 'standard',
   parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 6,
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaVersion: 7,
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
+      jsx: true
+    }
   },
   env: {
     browser: true,
     node: true
   },
-  // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-  extends: 'eslint:recommended',
-  // required to lint *.vue files
   plugins: ['html'],
-  // add your custom rules here
   rules: {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    // allow async-await
-    'generator-star-spacing': 0,
-    // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'func-call-spacing': ['error', 'never'],
+    'space-before-function-paren': [2, { anonymous: 'always', named: 'always' }],
+    'operator-linebreak': [
+      'error',
+      'after',
+      {
+        overrides: {
+          '?': 'after',
+          ':': 'before'
+        }
+      }
+    ],
+    indent: [
+      'error',
+      2,
+      {
+        SwitchCase: 1
+      }
+    ],
     'handle-callback-err': 0,
-    semi: 0,
-    'no-console': 0,
-    'no-unused-vars': 1
+    'no-constant-condition': 0,
+    'no-console': [
+      'error',
+      {
+        allow: ['warn', 'error', 'log']
+      }
+    ],
+    'no-empty': 0,
+    'no-new': 0,
+    'no-unused-vars': 0,
+    'no-labels': 0,
+    'no-eq-null': 0,
+    eqeqeq: 0,
+    'no-eval': 0,
+    'no-console': 0
   },
   globals: {
-    Reflect: true,
-    Proxy: true
+    ActiveXObject: true,
+    BMap: true,
+    particlesJS: true
   }
 }

@@ -7,13 +7,12 @@ let state = {
 state = proxy(state, 'vue2-demo', ['list'])
 
 const mutations = {
-
   /**
    * 添加歌曲
    * @param {*} state
    * @param {*} song 歌曲信息
    */
-  addSong(state, song) {
+  addSong (state, song) {
     let index = state.list.findIndex(s => s.songmid === song.songmid)
     if (index < 0) {
       state.list.push(song)
@@ -25,7 +24,7 @@ const mutations = {
    * @param {*} state  内置
    * @param {*} songs  歌曲列表
    */
-  addSongs(state, songs) {
+  addSongs (state, songs) {
     let index = -1
     songs.forEach(song => {
       index = state.list.findIndex(s => s.songmid === song.songmid)
@@ -40,7 +39,7 @@ const mutations = {
    * @param {*} state
    * @param {*} songmid  歌曲媒体id
    */
-  removeSong(state, songmid) {
+  removeSong (state, songmid) {
     let index = state.list.findIndex(s => s.songmid === songmid)
     index >= 0 && state.list.splice(index, 1)
   },
@@ -50,7 +49,7 @@ const mutations = {
    * @param {*} state
    * @param {*} songmids 歌曲媒体列表
    */
-  removeSongs(state, songmids = []) {
+  removeSongs (state, songmids = []) {
     let index = -1
     songmids.forEach(songmid => {
       index = state.list.findIndex(s => s.songmid === songmid)
@@ -63,7 +62,7 @@ const mutations = {
    * @param {*} state
    * @param {*} song 为空
    */
-  next(state, song) {
+  next (state, song) {
     // 如果song不为空，表示是插放，（前提是已经添加到playing）
     if (song) {
       let index = state.list.findIndex(s => s.songmid === song.songmid)
@@ -84,7 +83,7 @@ const mutations = {
       let index = state.list.findIndex(s => s.songmid === state.current.songmid)
       // 如果在歌曲列表里面，接着播放下首
       if (index >= 0) {
-        state.current = (index === state.list.length - 1 ? state.list[0] : state.list[index + 1])
+        state.current = index === state.list.length - 1 ? state.list[0] : state.list[index + 1]
       } else {
         state.current = state.list[0]
       }
