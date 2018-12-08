@@ -15,7 +15,7 @@ export default new Vuex.Store({
   actions,
   modules: {
     songs
-  }
+  },
   plugins: process.env.NODE_ENV !== 'production' ?
   [createLogger()]
   : []
