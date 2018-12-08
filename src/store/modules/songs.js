@@ -1,4 +1,4 @@
-import { proxy } from '../lib/LSProxy'
+import { proxy } from '../../lib/LSProxy'
 
 let state = {
   list: [],
