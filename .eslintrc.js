@@ -57,6 +57,7 @@ module.exports = {
   globals: {
     ActiveXObject: true,
     BMap: true,
-    particlesJS: true
+    particlesJS: true,
+    define: true
   }
 }
