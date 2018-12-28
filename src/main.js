@@ -8,8 +8,9 @@ import iView from 'iview'
 import '@/styles/index.less'
 import Raven from 'raven-js'
 import RavenVue from 'raven-js/plugins/vue'
+import 'api/mock-data'
 
-import('../config').then(c => console.log(c.dev.env))
+// import('../config').then(c => console.log(c.dev.env))
 
 Vue.use(iView)
 Vue.config.productionTip = false
@@ -21,11 +22,7 @@ Raven.config('https://9d2cc9dc027d4a6994e78d8214569737@sentry.io/240008')
   .install()
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.length < 2) {
-    next({ name: 'scopeSlot' })
-  } else {
-    next()
-  }
+  next()
 })
 
 router.afterEach((to, from) => {})

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> extends</title>
+  <script type="text/javascript" src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<h1> extends</h1>
+<hr>
+<div id="app">
+  {{ num }}
+  {{ echo() }}
+  <p>
+    <button @click="add">add</button>
+  </p>
+</div>
+
+
+<script>
+  const extendsObj = {
+    updated: function () {
+      console.log('我是扩展的updated')
+    },
+    methods: {
+      // 下面这个并没有被执行，如果方法名一样，只执行构造器里面的原生方法，混入跟扩展类似
+      add: function () {
+        console.log('我是扩展出来的方法')
+        this.num++
+      },
+      echo: function () {
+        return 'echo'
+      }
+    }
+  }
+
+  new Vue({ // eslint-disable-line no-undef
+    el: '#app',
+    data: {
+      num: 1
+    },
+    methods: {
+      add: function () {
+        console.log('我是原生的方法')
+        this.num++
+      }
+    },
+    // 全局的最优先，混入的先执行，原生的后执行，下面的后执行
+    updated: function () {
+      console.log('我是原生的update')
+    },
+    // 下面扩展放的是对象，而混入放的是数组
+    extends: extendsObj
+  })
+</script>
+</body>
+</html>

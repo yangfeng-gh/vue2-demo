@@ -1,89 +1,112 @@
-<!-- 侧边布局 -->
-<style scoped>
-.layout-con {
-  height: 100%;
-  width: 100%;
-}
-.menu-item span {
-  display: inline-block;
-  overflow: hidden;
-  width: 69px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: bottom;
-  transition: width 0.2s ease 0.2s;
-}
-.menu-item i {
-  transform: translateX(0px);
-  transition: font-size 0.2s ease, transform 0.2s ease;
-  vertical-align: middle;
-  font-size: 16px;
-}
-.collapsed-menu span {
-  width: 0px;
-  transition: width 0.2s ease;
-}
-.collapsed-menu i {
-  transform: translateX(5px);
-  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
-  vertical-align: middle;
-  font-size: 22px;
-}
-</style>
+<!-- 顶部-侧边布局 -->
 <template>
   <div class="layout">
-    <Layout :style="{minHeight: '100vh'}">
-      <Sider collapsible
-             :collapsed-width="78"
-             v-model="isCollapsed">
-        <Menu active-name="1-2"
+    <Layout>
+      <Header>
+        <Menu mode="horizontal"
               theme="dark"
-              width="auto"
-              :class="menuitemClasses">
-          <menu-item name="1-1">
-            <Icon type="ios-navigate"></Icon>
-            <span>Option 1</span>
-          </menu-item>
-          <menu-item name="1-2">
-            <Icon type="search"></Icon>
-            <span>Option 2</span>
-          </menu-item>
-          <menu-item name="1-3">
-            <Icon type="settings"></Icon>
-            <span>Option 3</span>
-          </menu-item>
+              active-name="1">
+          <div class="layout-logo"></div>
+          <div class="layout-nav">
+            <menu-item name="1">
+              <Icon type="ios-navigate"></Icon>
+              Item 1
+            </menu-item>
+            <menu-item name="2">
+              <Icon type="ios-keypad"></Icon>
+              Item 2
+            </menu-item>
+            <menu-item name="3">
+              <Icon type="ios-analytics"></Icon>
+              Item 3
+            </menu-item>
+            <menu-item name="4">
+              <Icon type="ios-paper"></Icon>
+              Item 4
+            </menu-item>
+          </div>
         </Menu>
-      </Sider>
-      <Layout>
-        <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
-        <Content :style="{padding: '0 16px 16px'}">
-          <Breadcrumb :style="{margin: '16px 0'}">
-            <BreadcrumbItem>Home</BreadcrumbItem>
-            <BreadcrumbItem>Components</BreadcrumbItem>
-            <BreadcrumbItem>Layout</BreadcrumbItem>
-          </Breadcrumb>
-          <Card>
-            <div style="height: 600px">Content</div>
-          </Card>
+      </Header>
+      <Layout :style="{padding: '0 50px'}">
+        <Breadcrumb :style="{margin: '16px 0'}">
+          <BreadcrumbItem>Home</BreadcrumbItem>
+          <BreadcrumbItem>Components</BreadcrumbItem>
+          <BreadcrumbItem>Layout</BreadcrumbItem>
+        </Breadcrumb>
+        <Content :style="{padding: '24px 0', minHeight: '280px', background: '#fff'}">
+          <Layout>
+            <Sider hide-trigger
+                   :style="{background: '#fff'}">
+              <Menu active-name="1-2"
+                    theme="light"
+                    width="auto"
+                    :open-names="['1']">
+                <Submenu name="1">
+                  <template slot="title">
+                    <Icon type="ios-navigate"></Icon>
+                    Item 1
+                  </template>
+                  <menu-item name="1-1">Option 1</menu-item>
+                  <menu-item name="1-2">Option 2</menu-item>
+                  <menu-item name="1-3">Option 3</menu-item>
+                </Submenu>
+                <Submenu name="2">
+                  <template slot="title">
+                    <Icon type="ios-keypad"></Icon>
+                    Item 2
+                  </template>
+                  <menu-item name="2-1">Option 1</menu-item>
+                  <menu-item name="2-2">Option 2</menu-item>
+                </Submenu>
+                <Submenu name="3">
+                  <template slot="title">
+                    <Icon type="ios-analytics"></Icon>
+                    Item 3
+                  </template>
+                  <menu-item name="3-1">Option 1</menu-item>
+                  <menu-item name="3-2">Option 2</menu-item>
+                </Submenu>
+              </Menu>
+            </Sider>
+            <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+              Content
+            </Content>
+          </Layout>
         </Content>
       </Layout>
+      <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
     </Layout>
   </div>
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isCollapsed: false
-    }
-  },
-  computed: {
-    menuitemClasses: function () {
-      return [
-        'menu-item',
-        this.isCollapsed ? 'collapsed-menu' : ''
-      ]
-    }
-  }
+
 }
 </script>
+<style scoped>
+.layout {
+  border: 1px solid #d7dde4;
+  background: #f5f7f9;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.layout-logo {
+  width: 100px;
+  height: 30px;
+  background: #5b6270;
+  border-radius: 3px;
+  float: left;
+  position: relative;
+  top: 15px;
+  left: 20px;
+}
+.layout-nav {
+  width: 420px;
+  margin: 0 auto;
+  margin-right: 20px;
+}
+.layout-footer-center {
+  text-align: center;
+}
+</style>

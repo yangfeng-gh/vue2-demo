@@ -1,28 +1,8 @@
-<!-- 自定义触发器 -->
+<!-- 侧边布局 -->
 <style scoped>
-.layout {
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.layout-header-bar {
-  background: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-.layout-logo-left {
-  width: 90%;
-  height: 30px;
-  background: #5b6270;
-  border-radius: 3px;
-  margin: 15px auto;
-}
-.menu-icon {
-  transition: all 0.3s;
-}
-.rotate-icon {
-  transform: rotate(-90deg);
+.layout-con {
+  height: 100%;
+  width: 100%;
 }
 .menu-item span {
   display: inline-block;
@@ -52,10 +32,8 @@
 </style>
 <template>
   <div class="layout">
-    <Layout>
-      <Sider ref="side1"
-             hide-trigger
-             collapsible
+    <Layout :style="{minHeight: '100vh'}">
+      <Sider collapsible
              :collapsed-width="78"
              v-model="isCollapsed">
         <Menu active-name="1-2"
@@ -77,16 +55,16 @@
         </Menu>
       </Sider>
       <Layout>
-        <Header :style="{padding: 0}"
-                class="layout-header-bar">
-          <Icon @click.native="collapsedSider"
-                :class="rotateIcon"
-                :style="{margin: '20px 20px 0'}"
-                type="navicon-round"
-                size="24"></Icon>
-        </Header>
-        <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
-          Content
+        <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}"></Header>
+        <Content :style="{padding: '0 16px 16px'}">
+          <Breadcrumb :style="{margin: '16px 0'}">
+            <BreadcrumbItem>Home</BreadcrumbItem>
+            <BreadcrumbItem>Components</BreadcrumbItem>
+            <BreadcrumbItem>Layout</BreadcrumbItem>
+          </Breadcrumb>
+          <Card>
+            <div style="height: 600px">Content</div>
+          </Card>
         </Content>
       </Layout>
     </Layout>
@@ -100,22 +78,11 @@ export default {
     }
   },
   computed: {
-    rotateIcon () {
-      return [
-        'menu-icon',
-        this.isCollapsed ? 'rotate-icon' : ''
-      ]
-    },
-    menuitemClasses () {
+    menuitemClasses: function () {
       return [
         'menu-item',
         this.isCollapsed ? 'collapsed-menu' : ''
       ]
-    }
-  },
-  methods: {
-    collapsedSider () {
-      this.$refs.side1.toggleCollapse()
     }
   }
 }

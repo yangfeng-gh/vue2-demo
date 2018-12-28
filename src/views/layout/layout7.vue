@@ -1,4 +1,4 @@
-<!-- 固定头部 -->
+<!-- 响应式布局 -->
 <style scoped>
 .layout {
   border: 1px solid #d7dde4;
@@ -7,62 +7,85 @@
   border-radius: 4px;
   overflow: hidden;
 }
-.layout-logo {
-  width: 100px;
-  height: 30px;
-  background: #5b6270;
-  border-radius: 3px;
-  float: left;
-  position: relative;
-  top: 15px;
-  left: 20px;
+.layout-header-bar {
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
-.layout-nav {
-  width: 420px;
-  margin: 0 auto;
-  margin-right: 20px;
+.menu-item span {
+  display: inline-block;
+  overflow: hidden;
+  width: 69px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  transition: width 0.2s ease 0.2s;
 }
-.layout-footer-center {
-  text-align: center;
+.menu-item i {
+  transform: translateX(0px);
+  transition: font-size 0.2s ease, transform 0.2s ease;
+  vertical-align: middle;
+  font-size: 16px;
+}
+.collapsed-menu span {
+  width: 0px;
+  transition: width 0.2s ease;
+}
+.collapsed-menu i {
+  transform: translateX(5px);
+  transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
+  vertical-align: middle;
+  font-size: 22px;
 }
 </style>
 <template>
   <div class="layout">
     <Layout>
-      <Header :style="{position: 'fixed', width: '100%'}">
-        <Menu mode="horizontal"
+      <Sider breakpoint="md"
+             collapsible
+             :collapsed-width="78"
+             v-model="isCollapsed">
+        <Menu active-name="1-2"
               theme="dark"
-              active-name="1">
-          <div class="layout-logo"></div>
-          <div class="layout-nav">
-            <menu-item name="1">
-              <Icon type="ios-navigate"></Icon>
-              Item 1
-            </menu-item>
-            <menu-item name="2">
-              <Icon type="ios-keypad"></Icon>
-              Item 2
-            </menu-item>
-            <menu-item name="3">
-              <Icon type="ios-analytics"></Icon>
-              Item 3
-            </menu-item>
-            <menu-item name="4">
-              <Icon type="ios-paper"></Icon>
-              Item 4
-            </menu-item>
-          </div>
+              width="auto"
+              :class="menuitemClasses">
+          <menu-item name="1-1">
+            <Icon type="ios-navigate"></Icon>
+            <span>Option 1</span>
+          </menu-item>
+          <menu-item name="1-2">
+            <Icon type="search"></Icon>
+            <span>Option 2</span>
+          </menu-item>
+          <menu-item name="1-3">
+            <Icon type="settings"></Icon>
+            <span>Option 3</span>
+          </menu-item>
         </Menu>
-      </Header>
-      <Content :style="{margin: '88px 20px 0', background: '#fff', minHeight: '500px'}">
-        Content
-      </Content>
-      <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
+        <div slot="trigger"></div>
+      </Sider>
+      <Layout>
+        <Header class="layout-header-bar"></Header>
+        <Content :style="{margin: '20px', background: '#fff', minHeight: '220px'}">
+          Content
+        </Content>
+      </Layout>
     </Layout>
   </div>
 </template>
 <script>
 export default {
-
+  data () {
+    return {
+      isCollapsed: false
+    }
+  },
+  computed: {
+    menuitemClasses: function () {
+      return [
+        'menu-item',
+        this.isCollapsed ? 'collapsed-menu' : ''
+      ]
+    }
+  }
 }
 </script>

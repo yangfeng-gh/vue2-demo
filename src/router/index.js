@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from '@/views/layout/layout'
 import Layout1 from '@/views/layout/layout1'
 import Layout2 from '@/views/layout/layout2'
 import Layout3 from '@/views/layout/layout3'
@@ -9,17 +8,13 @@ import Layout5 from '@/views/layout/layout5'
 import Layout6 from '@/views/layout/layout6'
 import Layout7 from '@/views/layout/layout7'
 import Layout8 from '@/views/layout/layout8'
+import Layout9 from '@/views/layout/layout9'
 
 Vue.use(Router)
 
 export default new Router({
   // mode: 'history',
   routes: [
-    {
-      path: '/layout',
-      name: 'Layout',
-      component: Layout
-    },
     {
       path: '/layout1',
       name: 'layout1',
@@ -56,9 +51,14 @@ export default new Router({
       component: Layout7
     },
     {
-      path: '/',
+      path: '/layout8',
       name: 'layout8',
-      component: Layout8,
+      component: Layout8
+    },
+    {
+      path: '/layout',
+      name: 'layout9',
+      component: Layout9,
       children: [
         {
           path: 'scope/slot',
@@ -81,6 +81,11 @@ export default new Router({
           component: resolve => require(['../views/event/once.vue'], resolve)
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: resolve => require(['../views/common/login.vue'], resolve)
     }
     // { path: '*', redirect: '/' }
   ]
