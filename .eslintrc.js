@@ -52,7 +52,8 @@ module.exports = {
     'no-eq-null': 0,
     eqeqeq: 0,
     'no-eval': 0,
-    'no-console': 0
+    'no-console': 0,
+    'no-undef': 0
   },
   globals: {
     ActiveXObject: true,
