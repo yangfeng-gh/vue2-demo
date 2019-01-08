@@ -1,5 +1,5 @@
 <template>
-<Form :label-width="80" class="login">
+<Form :label-width="80" class="$style['login']">
   <FormItem label="用户名：">
     <Input v-model="username"></Input>
   </FormItem>
@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style module>
   .login {
     margin: 32px;
   }
