@@ -82,7 +82,7 @@ export default new Router({
         },
         {
           path: 'map/bmap',
-          name: 'eventOnce',
+          name: 'bmap',
           component: resolve => require(['../views/map/BMap.vue'], resolve)
         }
       ]

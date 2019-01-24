@@ -58,7 +58,7 @@ axios.interceptors.response.use(
   }
 )
 
-export function transformParams (params) {
+export function transformParams(params) {
   let _params = {}
   for (let [key, value] of Object.entries(params)) {
     if (value || value === 0 || value === false) {
@@ -68,7 +68,7 @@ export function transformParams (params) {
   return _params
 }
 
-export function postTransformData (params) {
+export function postTransformData(params) {
   let _params = {}
   for (let [key, value] of Object.entries(params)) {
     if (value || value === 0 || value === false) {

@@ -28,7 +28,7 @@ export default {
     title: String
   },
   methods: {
-    onClick () {
+    onClick() {
       this.$emit('click', 'hello')
     }
   }

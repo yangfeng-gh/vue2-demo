@@ -94,19 +94,19 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       isCollapsed: false
     }
   },
   computed: {
-    rotateIcon () {
+    rotateIcon() {
       return [
         'menu-icon',
         this.isCollapsed ? 'rotate-icon' : ''
       ]
     },
-    menuitemClasses () {
+    menuitemClasses() {
       return [
         'menu-item',
         this.isCollapsed ? 'collapsed-menu' : ''
@@ -114,7 +114,7 @@ export default {
     }
   },
   methods: {
-    collapsedSider () {
+    collapsedSider() {
       this.$refs.side1.toggleCollapse()
     }
   }

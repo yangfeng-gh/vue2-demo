@@ -18,8 +18,9 @@ exports.cssLoaders = function (options) {
     options: {
       minimize: process.env.NODE_ENV === 'production',
       sourceMap: options.sourceMap,
-      modules: true,
-      localIdentName: '[local]_[hash:base64:8]'
+      // modules: true,
+      // importLoaders: 1,
+      // localIdentName: '[local]_[hash:base64:8]'
     }
   }
 

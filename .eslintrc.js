@@ -19,7 +19,7 @@ module.exports = {
   rules: {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'func-call-spacing': ['error', 'never'],
-    'space-before-function-paren': [2, { anonymous: 'always', named: 'always' }],
+    'space-before-function-paren': [1, { anonymous: 'always', named: 'never', "asyncArrow": "always" }],
     'operator-linebreak': [
       'error',
       'after',
@@ -57,7 +57,12 @@ module.exports = {
   },
   globals: {
     ActiveXObject: true,
+
+    // ----- baidu map -----
     BMap: true,
+    BMapLib: true,
+    BMAP_ANCHOR_TOP_RIGHT: true,
+    // ---------------------
     particlesJS: true,
     define: true
   }

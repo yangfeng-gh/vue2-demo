@@ -11,7 +11,7 @@
 export default {
   name: 'Native-Child',
   methods: {
-    onClick (e) {
+    onClick(e) {
       console.log(e)
     }
   }

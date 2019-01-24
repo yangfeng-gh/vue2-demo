@@ -11,20 +11,20 @@ export default {
     },
     target: {
       type: String,
-      validator (value) {
+      validator(value) {
         return oneOf(value, ['_blank', '_self', '_parent', '_top'])
       },
       default: '_self'
     }
   },
   computed: {
-    linkUrl () {
+    linkUrl() {
       const type = typeof this.to
       return type === 'string' ? this.to : null
     }
   },
   methods: {
-    handleClick (newWindow = false) {
+    handleClick(newWindow = false) {
       if (newWindow) {
         window.open(this.to)
       } else {
@@ -36,7 +36,7 @@ export default {
         }
       }
     },
-    handleCheckClick (event, newWindow = false) {
+    handleCheckClick(event, newWindow = false) {
       if (this.to) {
         if (this.target === '_blank') {
           return false

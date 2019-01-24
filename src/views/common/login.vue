@@ -1,5 +1,5 @@
 <template>
-<Form :label-width="80" class="$style['login']">
+<Form :label-width="80" :class="$style.login">
   <FormItem label="用户名：">
     <Input v-model="username"></Input>
   </FormItem>
@@ -16,14 +16,14 @@
 import {login} from 'api'
 
 export default {
-  data () {
+  data() {
     return {
       username: '',
       password: ''
     }
   },
   methods: {
-    login () {
+    login() {
       let data = {
         username: this.username,
         password: this.password
@@ -38,6 +38,6 @@ export default {
 
 <style module>
   .login {
-    margin: 32px;
+    margin-top: 32px;
   }
 </style>

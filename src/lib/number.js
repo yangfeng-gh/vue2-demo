@@ -4,8 +4,8 @@
  * @return :Number 指定精度的小数
  */
 const round = (n, precision) => {
-    let p = Math.pow(10, precision)
-    return Math.round(n * p) / p
+  let p = Math.pow(10, precision)
+  return Math.round(n * p) / p
 }
 
 /**
@@ -14,7 +14,7 @@ const round = (n, precision) => {
  * @return :Number 毛利率
  */
 const computeProfitRate = (cost, salePrice) => {
-    return round((salePrice - cost) * 100 / salePrice, 2)
+  return round((salePrice - cost) * 100 / salePrice, 2)
 }
 
 /**
@@ -23,11 +23,11 @@ const computeProfitRate = (cost, salePrice) => {
  * @return :Number 销售价
  */
 const computeSalePrice = (cost, rate) => {
-    return round(cost * 100 / (100 - rate), 2)
+  return round(cost * 100 / (100 - rate), 2)
 }
 
 export default {
-    round,
-    computeProfitRate,
-    computeSalePrice
+  round,
+  computeProfitRate,
+  computeSalePrice
 }

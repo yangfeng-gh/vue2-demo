@@ -2,19 +2,19 @@
   <div class="map-area" :id="mapId"></div>
 </template>
 <script>
-import loadBMap from './loadBMap.js'
+import loadBMap from '@/lib/loadBMap.js'
 export default {
-  data () {
+  data() {
     return {
       mapId: 'BMap-' + parseInt(Date.now() + Math.random()),
       myMap: null
     }
   },
-  mounted () {
+  mounted() {
     this.initMap()
   },
   methods: {
-    initMap () {
+    initMap() {
       loadBMap('你的百度地图的密钥')
         .then(() => {
           // 百度地图API功能

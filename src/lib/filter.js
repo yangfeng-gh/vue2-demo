@@ -1,10 +1,10 @@
-export function capitalize (value) {
+export function capitalize(value) {
   if (!value) return ''
   value = value.toString()
   return value.charAt(0).toUpperCase() + value.slice(1)
 }
 
-export function currency (value) {
+export function currency(value) {
   value = parseFloat(value)
   if (isNaN(value)) return ''
   return `¥ ${value.toFixed(2)}`

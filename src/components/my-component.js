@@ -11,7 +11,7 @@ Vue.component('my-component', {
   },
   props: ['value'], // 接收一个 value prop
   methods: {
-    handleInput (event) {
+    handleInput(event) {
       var value = event.target.value
       this.$emit('input', value) // 触发 input 事件，并传入新值
     }

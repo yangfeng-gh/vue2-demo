@@ -1,7 +1,7 @@
 /**
  * 应用：城市，市场
  */
-export function transformTree (treeData, checkedIds) {
+export function transformTree(treeData, checkedIds) {
   if (!(treeData instanceof Array) || treeData.length <= 0) {
     return []
   }
@@ -29,7 +29,7 @@ export function transformTree (treeData, checkedIds) {
  * 应用：城市，市场
  * 获取已选中的城市和市场
  */
-export function filterCheckedNodes (treeData, checkedNods) {
+export function filterCheckedNodes(treeData, checkedNods) {
   if (!(treeData instanceof Array) || treeData.length <= 0) {
     return []
   }
@@ -38,7 +38,7 @@ export function filterCheckedNodes (treeData, checkedNods) {
   }
   let checkedIds = checkedNods.map(node => node.id)
   let _checkedIds = []
-  ;(function _filterIds (treeData, checkedIds) {
+  ;(function _filterIds(treeData, checkedIds) {
     treeData.forEach(item => {
       if (checkedIds.includes(item.id) && (!item.parentId || !checkedIds.includes(item.parentId))) {
         _checkedIds.push(item.id)
@@ -54,7 +54,7 @@ export function filterCheckedNodes (treeData, checkedNods) {
 /**
  * 应用：系统设置-部门
  */
-export function findValidDepartment (treeData) {
+export function findValidDepartment(treeData) {
   if (!(treeData instanceof Array) || treeData.length <= 0) {
     return []
   }
@@ -76,7 +76,7 @@ export function findValidDepartment (treeData) {
 /**
  * 应用：系统设置-部门
  */
-export function findInvalidDepartment (treeData) {
+export function findInvalidDepartment(treeData) {
   if (!(treeData instanceof Array) || treeData.length <= 0) {
     return []
   }
@@ -102,7 +102,7 @@ export function findInvalidDepartment (treeData) {
 /**
  * 构造权限树
  */
-export function transformPrivilegeTree (treeData, checkedIds) {
+export function transformPrivilegeTree(treeData, checkedIds) {
   if (!(treeData instanceof Array) || treeData.length <= 0) {
     return []
   }
@@ -145,7 +145,7 @@ export function transformPrivilegeTree (treeData, checkedIds) {
  * 应用：权限树
  * 构造权限树
  */
-export function transformPrivilegeTree2 (treeData) {
+export function transformPrivilegeTree2(treeData) {
   if (!(treeData instanceof Array) || treeData.length <= 0) {
     return []
   }
@@ -175,7 +175,7 @@ export function transformPrivilegeTree2 (treeData) {
  * 应用：权限树
  * 处理父级联动
  */
-export function changeParentCascade (current, parent) {
+export function changeParentCascade(current, parent) {
   if (current.checked) {
     parent.checkedChildren.push(current.id)
   } else {
@@ -193,12 +193,12 @@ export function changeParentCascade (current, parent) {
  * 应用：权限树
  * 获取权限树中已选中的
  */
-export function getCheckedPrivileges (treeData) {
+export function getCheckedPrivileges(treeData) {
   if (!(treeData instanceof Array) || treeData.length <= 0) {
     return []
   }
   let _checkedIds = []
-  ;(function _getCheckedIds (_treeData) {
+  ;(function _getCheckedIds(_treeData) {
     _treeData.forEach(item => {
       if (item.checked || item.indeterminate) {
         _checkedIds.push(item.id)

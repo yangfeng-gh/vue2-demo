@@ -5,7 +5,7 @@ export default function (options, storage, key) {
   storage = options.storage || (window && window.localStorage)
   key = options.key || 'vuex'
 
-  function canWriteStorage (storage) {
+  function canWriteStorage(storage) {
     try {
       storage.setItem('@@', 1)
       storage.removeItem('@@')
@@ -15,7 +15,7 @@ export default function (options, storage, key) {
     return false
   }
 
-  function getState (key, storage, value) {
+  function getState(key, storage, value) {
     try {
       return (value = storage.getItem(key)) && typeof value !== 'undefined' ?
         JSON.parse(value)
@@ -25,15 +25,15 @@ export default function (options, storage, key) {
     return undefined
   }
 
-  function filter () {
+  function filter() {
     return true
   }
 
-  function setState (key, state, storage) {
+  function setState(key, state, storage) {
     return storage.setItem(key, JSON.stringify(state))
   }
 
-  function reducer (state, paths) {
+  function reducer(state, paths) {
     return paths.length === 0 ?
       state
       : paths.reduce(function (substate, path) {
@@ -41,7 +41,7 @@ export default function (options, storage, key) {
       }, {})
   }
 
-  function subscriber (store) {
+  function subscriber(store) {
     return function (handler) {
       return store.subscribe(handler)
     }

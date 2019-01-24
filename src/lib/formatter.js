@@ -1,4 +1,4 @@
-export function dateFormat (value, formatter) {
+export function dateFormat(value, formatter) {
   value = value || new Date()
   formatter = /^[y|M|d|H|h|m|s].*/.test(formatter) ? formatter : 'yyyy-MM-dd HH:mm:ss'
   if (typeof value === 'string' || typeof value === 'number') {

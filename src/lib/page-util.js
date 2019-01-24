@@ -1,12 +1,12 @@
 import store from '@/store'
 import { default as router, routes, mainRoutes, mainMenus, mainMenuNames } from '@/router'
 
-export function setTitle (title) {
+export function setTitle(title) {
   title = title || '米树电商管理平台'
   window.document.title = title
 }
 
-export function getRoleIds () {
+export function getRoleIds() {
   let user = store.state.activeUser
   let roleIds = []
   if (user && user.adminRoles instanceof Array) {
@@ -15,7 +15,7 @@ export function getRoleIds () {
   return roleIds
 }
 
-export function getPrivileges () {
+export function getPrivileges() {
   let user = store.state.activeUser
   let privileges = []
   if (user && user.adminAuthoritys instanceof Array) {
@@ -24,7 +24,7 @@ export function getPrivileges () {
   return privileges
 }
 
-export function hasPrivilege (routeName) {
+export function hasPrivilege(routeName) {
   let roleIds = getRoleIds()
   if (roleIds.includes(1)) {
     return true
@@ -34,7 +34,7 @@ export function hasPrivilege (routeName) {
   }
 }
 
-export function openPage (to, from, next) {
+export function openPage(to, from, next) {
   try {
     // 验证权限
     // if (!hasPrivilege(to.name)) {
@@ -81,7 +81,7 @@ export function openPage (to, from, next) {
   }
 }
 
-export function closePage (current, next) {
+export function closePage(current, next) {
   store.commit('app/removeOpenedPage', current)
   if (store.state.app.openedPages.length < 1 && !next) {
     router.push({
@@ -100,7 +100,7 @@ export function closePage (current, next) {
   }
 }
 
-export function updateMainMenus () {
+export function updateMainMenus() {
   let menus = mainMenus.filter(route => {
     if (route.auth) {
       return hasPrivilege(route)
@@ -111,7 +111,7 @@ export function updateMainMenus () {
   store.commit('app/setMainMenus', menus)
 }
 
-export function updateLeftMenus (routeName) {
+export function updateLeftMenus(routeName) {
   let mainRoute = mainRoutes.find(route => route.name === routeName)
   let leftMenus = JSON.parse(JSON.stringify(mainRoute.children))
   if (hasPrivilege(routeName)) {
@@ -129,7 +129,7 @@ export function updateLeftMenus (routeName) {
   store.commit('app/setLeftMenus', leftMenus)
 }
 
-export function updateActiveLeftMenu (mainMenuName, route) {
+export function updateActiveLeftMenu(mainMenuName, route) {
   let routeObj = {
     name: route.name
   }
@@ -151,7 +151,7 @@ export function updateActiveLeftMenu (mainMenuName, route) {
   store.commit('app/setActiveLeftMenuObj', activeLeftMenuObj)
 }
 
-export function updateCurrentPath (route) {
+export function updateCurrentPath(route) {
   if (route.matched.length < 3) {
     return
   }
@@ -169,7 +169,7 @@ export function updateCurrentPath (route) {
   store.commit('app/setCurrentPath', paths)
 }
 
-function getParentRoute (childRoute, parentName) {
+function getParentRoute(childRoute, parentName) {
   let parent = mainRoutes
     .find(r1 => r1.name === childRoute.matched[0].name)
     .children.find(r2 => r2.name === childRoute.matched[1].name)

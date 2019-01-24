@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 /*!
  * cacheUtils.js v1.0.0
  * 缓存工具类
@@ -15,7 +15,7 @@
  * Date: 2016-06-17
  *
  */
-import CONSTS from './consts';
+import CONSTS from './consts'
 
 const sessionStorage = prefix => {
   /**
@@ -24,19 +24,19 @@ const sessionStorage = prefix => {
    * @param {String} val
    * @public
    */
-    var set = (key, val) => {
-        key = prefix + '_' + key;
-        if (!window.sessionStorage) {
-            window.alert('Your browser not support localStorage. Please check set browser private model.');
-            return;
-        }
-        try {
-            window.sessionStorage.setItem(key, val);
-        } catch (e) {
-            window.console.warn('Your browser not support localStorage. ' + e);
-            window.alert('Your browser not support localStorage. Please check set browser private model.');
-        }
-    };
+  var set = (key, val) => {
+    key = prefix + '_' + key
+    if (!window.sessionStorage) {
+      window.alert('Your browser not support localStorage. Please check set browser private model.')
+      return
+    }
+    try {
+      window.sessionStorage.setItem(key, val)
+    } catch (e) {
+      window.console.warn('Your browser not support localStorage. ' + e)
+      window.alert('Your browser not support localStorage. Please check set browser private model.')
+    }
+  }
 
   /**
    * @desc 获取数据
@@ -44,13 +44,13 @@ const sessionStorage = prefix => {
    * @return {String} 获取的字符串内容
    * @public
    */
-    var get = key => {
-        key = prefix + '_' + key;
-        return window.sessionStorage.getItem(key);
-    };
-    return {
-        set: set,
-        get: get,
+  var get = key => {
+    key = prefix + '_' + key
+    return window.sessionStorage.getItem(key)
+  }
+  return {
+    set: set,
+    get: get,
 
     /**
      * @desc 存入缓存，Object
@@ -58,10 +58,10 @@ const sessionStorage = prefix => {
      * @param {Object} val
      * @public
      */
-        setObject: (key, val) => {
-            val = JSON.stringify(val);
-            set(key, val);
-        },
+    setObject: (key, val) => {
+      val = JSON.stringify(val)
+      set(key, val)
+    },
 
     /**
      * @desc 获取数据,Object
@@ -69,38 +69,38 @@ const sessionStorage = prefix => {
      * @return {Object}
      * @public
      */
-        getObject: key => {
-            let result = get(key);
-            let json = null;
-            if (!result) {
-                return undefined;
-            } else {
-                try {
-                    json = JSON.parse(result);
-                } catch (e) {
-                    console.log('缓存数据解决json异常!');
-                }
-                return json;
-            }
-        },
+    getObject: key => {
+      let result = get(key)
+      let json = null
+      if (!result) {
+        return undefined
+      } else {
+        try {
+          json = JSON.parse(result)
+        } catch (e) {
+          console.log('缓存数据解决json异常!')
+        }
+        return json
+      }
+    },
 
     /**
      * @desc 删除数据
      * @param {String} key
      * @public
      */
-        del: key => {
-            key = prefix + '_' + key;
-            window.sessionStorage.removeItem(key);
-        },
+    del: key => {
+      key = prefix + '_' + key
+      window.sessionStorage.removeItem(key)
+    },
 
     /**
      * @desc 清理缓存
      * @public
      */
-        clear: () => {
-            window.sessionStorage.clear();
-        },
+    clear: () => {
+      window.sessionStorage.clear()
+    },
 
     /**
      * @desc 获取key根据角标
@@ -108,26 +108,26 @@ const sessionStorage = prefix => {
      * @return {String} val
      * @public
      */
-        key: i => {
-            i = i || 0;
-            return Object.keys(window.sessionStorage)[i];
-        },
+    key: i => {
+      i = i || 0
+      return Object.keys(window.sessionStorage)[i]
+    },
 
     // 获取所有的key
-        keys: () => {
-            return Object.keys(window.sessionStorage);
-        },
+    keys: () => {
+      return Object.keys(window.sessionStorage)
+    },
 
     // 获取所有的value
-        values: () => {
-            return Object.values(window.sessionStorage);
-        },
+    values: () => {
+      return Object.values(window.sessionStorage)
+    },
 
-        length: () => {
-            return Object.keys(window.sessionStorage).length;
-        }
-    };
-};
+    length: () => {
+      return Object.keys(window.sessionStorage).length
+    }
+  }
+}
 
 const localStorage = prefix => {
   /**
@@ -136,19 +136,19 @@ const localStorage = prefix => {
    * @param {String} val
    * @public
    */
-    var set = (key, val) => {
-        key = prefix + '_' + key;
-        if (!window.localStorage) {
-            window.alert('Your browser not support localStorage. Please check set browser private model.');
-            return;
-        }
-        try {
-            window.localStorage.setItem(key, val);
-        } catch (e) {
-            window.console.warn('Your browser not support localStorage. ' + e);
-            window.alert('Your browser not support localStorage. Please check set browser private model.');
-        }
-    };
+  var set = (key, val) => {
+    key = prefix + '_' + key
+    if (!window.localStorage) {
+      window.alert('Your browser not support localStorage. Please check set browser private model.')
+      return
+    }
+    try {
+      window.localStorage.setItem(key, val)
+    } catch (e) {
+      window.console.warn('Your browser not support localStorage. ' + e)
+      window.alert('Your browser not support localStorage. Please check set browser private model.')
+    }
+  }
 
   /**
    * @desc 获取数据,String
@@ -156,14 +156,14 @@ const localStorage = prefix => {
    * @return {String}
    * @public
    */
-    var get = key => {
-        key = prefix + '_' + key;
-        return window.localStorage.getItem(key) === 'null' ? '' : window.localStorage.getItem(key);
-    };
-    return {
+  var get = key => {
+    key = prefix + '_' + key
+    return window.localStorage.getItem(key) === 'null' ? '' : window.localStorage.getItem(key)
+  }
+  return {
 
-        set: set,
-        get: get,
+    set: set,
+    get: get,
 
     /**
      * @desc 存入缓存，Object
@@ -171,10 +171,10 @@ const localStorage = prefix => {
      * @param {Object} val
      * @public
      */
-        setObject: (key, val) => {
-            val = JSON.stringify(val);
-            set(key, val);
-        },
+    setObject: (key, val) => {
+      val = JSON.stringify(val)
+      set(key, val)
+    },
 
     /**
      * @desc 获取数据,Object
@@ -182,41 +182,41 @@ const localStorage = prefix => {
      * @return {Object}
      * @public
      */
-        getObject: key => {
-            let result = get(key);
-            let json = null;
-            if (!result) {
-                return undefined;
-            } else {
-                try {
-                    json = JSON.parse(result);
-                } catch (e) {
-                    console.log('缓存数据解决json异常!');
-                }
-                return json;
-            }
-        },
+    getObject: key => {
+      let result = get(key)
+      let json = null
+      if (!result) {
+        return undefined
+      } else {
+        try {
+          json = JSON.parse(result)
+        } catch (e) {
+          console.log('缓存数据解决json异常!')
+        }
+        return json
+      }
+    },
 
     /**
      * @desc 删除数据
      * @param {String} key
      * @public
      */
-        del: key => {
-            key = prefix + '_' + key;
-            window.localStorage.removeItem(key);
-        },
+    del: key => {
+      key = prefix + '_' + key
+      window.localStorage.removeItem(key)
+    },
 
     /**
      * @desc 清除数据,instanceId需要保留
      * @param {String} key
      * @public
      */
-        clear: () => {
-            window.localStorage.clear();
-            cookie.clear();
-            window.sessionStorage.clear();
-        },
+    clear: () => {
+      window.localStorage.clear()
+      cookie.clear()
+      window.sessionStorage.clear()
+    },
 
     /**
      * @desc 获取key根据角标
@@ -224,10 +224,10 @@ const localStorage = prefix => {
      * @return {String} key
      * @public
      */
-        key: i => {
-            i = i || 0;
-            return Object.keys(window.localStorage)[i];
-        },
+    key: i => {
+      i = i || 0
+      return Object.keys(window.localStorage)[i]
+    },
 
     /**
      * @desc 获取所有的key
@@ -235,29 +235,29 @@ const localStorage = prefix => {
      * @return {Array} key数组
      * @public
      */
-        keys: () => {
-            return Object.keys(window.localStorage);
-        },
+    keys: () => {
+      return Object.keys(window.localStorage)
+    },
 
     /**
      * @desc 获取所有的value
      * @return {Object} 数据集合
      * @public
      */
-        values: () => {
-            return Object.values(window.localStorage);
-        },
+    values: () => {
+      return Object.values(window.localStorage)
+    },
 
     /**
      * @desc 获取key的数量
      * @return {Number} key数量
      * @public
      */
-        length: () => {
-            return Object.keys(window.localStorage).length;
-        }
-    };
-};
+    length: () => {
+      return Object.keys(window.localStorage).length
+    }
+  }
+}
 
 /**
  * 缓存cookie默认存储一个月
@@ -272,19 +272,19 @@ const cookie = {
    * @param {String} domain  域名
    * @public
    */
-    set: (key, val, time, domain) => {
-        var exp = new Date();
-        var t = !time ? (exp.getTime() + 2592000000) : (exp.getTime() + time);
-        exp.setTime(t);
+  set: (key, val, time, domain) => {
+    var exp = new Date()
+    var t = !time ? (exp.getTime() + 2592000000) : (exp.getTime() + time)
+    exp.setTime(t)
 
-        if (domain === true) {
+    if (domain === true) {
       /* no-useless-escape */
       // .xx.com
-            domain = document.domain.replace(/[a-zA-Z]+/, '');
-        }
-        var extr = domain ? ';domain=' + domain + ';path=/' : '';
-        document.cookie = key + '=' + escape(val) + ';expires=' + exp.toGMTString() + extr;
-    },
+      domain = document.domain.replace(/[a-zA-Z]+/, '')
+    }
+    var extr = domain ? ';domain=' + domain + ';path=/' : ''
+    document.cookie = key + '=' + escape(val) + ';expires=' + exp.toGMTString() + extr
+  },
 
   /**
    * @desc 获取数据,String
@@ -292,11 +292,11 @@ const cookie = {
    * @return {String}
    * @public
    */
-    get: key => {
-        var reg = new RegExp('(^| )' + key + '=([^;]*)(;|$)');
-        var arr = document.cookie.match(reg);
-        return arr ? unescape(arr[2]) : '';
-    },
+  get: key => {
+    var reg = new RegExp('(^| )' + key + '=([^;]*)(;|$)')
+    var arr = document.cookie.match(reg)
+    return arr ? unescape(arr[2]) : ''
+  },
 
   /**
    * @desc 存入缓存，Object
@@ -304,20 +304,20 @@ const cookie = {
    * @param {Object} val
    * @public
    */
-    setObject: (key, val, time, domain) => {
-        val = JSON.stringify(val);
-        var exp = new Date();
-        var t = !time ? (exp.getTime() + 2592000000) : (exp.getTime() + time);
-        exp.setTime(t);
+  setObject: (key, val, time, domain) => {
+    val = JSON.stringify(val)
+    var exp = new Date()
+    var t = !time ? (exp.getTime() + 2592000000) : (exp.getTime() + time)
+    exp.setTime(t)
 
-        if (domain === true) {
+    if (domain === true) {
       /* no-useless-escape */
       // .xx.com
-            domain = document.domain.replace(/[a-zA-Z]+/, '');
-        }
-        var extr = domain ? ';domain=' + domain + ';path=/' : '';
-        document.cookie = key + '=' + escape(val) + ';expires=' + exp.toGMTString() + extr;
-    },
+      domain = document.domain.replace(/[a-zA-Z]+/, '')
+    }
+    var extr = domain ? ';domain=' + domain + ';path=/' : ''
+    document.cookie = key + '=' + escape(val) + ';expires=' + exp.toGMTString() + extr
+  },
 
   /**
    * @desc 获取数据,Object
@@ -325,17 +325,17 @@ const cookie = {
    * @return {Object}
    * @public
    */
-    getObject: key => {
-        var reg = new RegExp('(^| )' + key + '=([^;]*)(;|$)');
-        var arr = document.cookie.match(reg);
-        let json = null;
-        try {
-            json = JSON.parse(arr ? unescape(arr[2]) : '');
-        } catch (e) {
-            console.log('缓存数据解决json异常!');
-        }
-        return json;
-    },
+  getObject: key => {
+    var reg = new RegExp('(^| )' + key + '=([^;]*)(;|$)')
+    var arr = document.cookie.match(reg)
+    let json = null
+    try {
+      json = JSON.parse(arr ? unescape(arr[2]) : '')
+    } catch (e) {
+      console.log('缓存数据解决json异常!')
+    }
+    return json
+  },
 
   /**
    * @desc 删除数据
@@ -343,37 +343,37 @@ const cookie = {
    * @param {String} domain  域名
    * @public
    */
-    del: (key, domain) => {
-        var exp = new Date();
-        exp.setTime(exp.getTime() - 1);
-        var cval = cookie.get(key);
+  del: (key, domain) => {
+    var exp = new Date()
+    exp.setTime(exp.getTime() - 1)
+    var cval = cookie.get(key)
 
-        if (domain === true) {
-            domain = document.domain.replace(/[a-zA-Z]+/, '');
-        }
-        var extr = domain ? ';domain=' + domain + ';path=/' : '';
-        if (cval) {
-            document.cookie = key + '=1;expires=' + exp.toGMTString() + extr;
-        }
-    },
+    if (domain === true) {
+      domain = document.domain.replace(/[a-zA-Z]+/, '')
+    }
+    var extr = domain ? ';domain=' + domain + ';path=/' : ''
+    if (cval) {
+      document.cookie = key + '=1;expires=' + exp.toGMTString() + extr
+    }
+  },
 
   /**
    * @desc 清理数据
    * @public
    */
-    clear: () => {
-        var keys = document.cookie.match(/[^ =;]+(?==)/g);
-        if (!keys || !keys.length) return;
-        for (var i = keys.length; i--;) {
-            document.cookie = keys[i] + '=0;expires=Thu, 01 Jan 1970 00:00:00 GMT;';
-        }
+  clear: () => {
+    var keys = document.cookie.match(/[^ =;]+(?==)/g)
+    if (!keys || !keys.length) return
+    for (var i = keys.length; i--;) {
+      document.cookie = keys[i] + '=0;expires=Thu, 01 Jan 1970 00:00:00 GMT;'
     }
-};
+  }
+}
 
 export default {
-    localStorage,
-    cookie,
-    sessionStorage
-};
+  localStorage,
+  cookie,
+  sessionStorage
+}
 
-export { localStorage, cookie, sessionStorage };
+export { localStorage, cookie, sessionStorage }

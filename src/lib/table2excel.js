@@ -1,5 +1,5 @@
 var idTmr
-function getExplorer () {
+function getExplorer() {
   var explorer = window.navigator.userAgent
   if (explorer.indexOf('MSIE') >= 0) {
     // ie
@@ -18,7 +18,7 @@ function getExplorer () {
     return 'Safari'
   }
 }
-function tranform (table, aId, name) {
+function tranform(table, aId, name) {
   let tableHead = table.$children[0].$el
   let tableBody = table.$children[1].$el
   let tableInnerHTML = '<thead><tr>'
@@ -85,7 +85,7 @@ function tranform (table, aId, name) {
     tableToExcel(tableInnerHTML, aId, name)
   }
 }
-function Cleanup () {
+function Cleanup() {
   window.clearInterval(idTmr)
   // CollectGarbage();
 }

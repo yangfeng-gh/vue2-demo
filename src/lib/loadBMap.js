@@ -1,4 +1,4 @@
-export default function loadBMap (ak) {
+export default function loadBMap(ak) {
   return new Promise(function (resolve, reject) {
     if (typeof BMap !== 'undefined') {
       resolve(BMap)

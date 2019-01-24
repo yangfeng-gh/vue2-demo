@@ -1,7 +1,7 @@
 import Vue from 'vue'
 const isServer = Vue.prototype.$isServer
 // 判断参数是否是其中之一
-export function oneOf (value, validList) {
+export function oneOf(value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
       return true
@@ -10,13 +10,13 @@ export function oneOf (value, validList) {
   return false
 }
 
-export function camelcaseToHyphen (str) {
+export function camelcaseToHyphen(str) {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
 // For Modal scrollBar hidden
 let cached
-export function getScrollBarSize (fresh) {
+export function getScrollBarSize(fresh) {
   if (isServer) return 0
   if (fresh || cached === undefined) {
     const inner = document.createElement('div')
@@ -62,7 +62,7 @@ export const MutationObserver = isServer ?
 const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g
 const MOZ_HACK_REGEXP = /^moz([A-Z])/
 
-function camelCase (name) {
+function camelCase(name) {
   return name
     .replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
       return offset ? letter.toUpperCase() : letter
@@ -70,7 +70,7 @@ function camelCase (name) {
     .replace(MOZ_HACK_REGEXP, 'Moz$1')
 }
 // getStyle
-export function getStyle (element, styleName) {
+export function getStyle(element, styleName) {
   if (!element || !styleName) return null
   styleName = camelCase(styleName)
   if (styleName === 'float') {
@@ -85,13 +85,13 @@ export function getStyle (element, styleName) {
 }
 
 // firstUpperCase
-function firstUpperCase (str) {
+function firstUpperCase(str) {
   return str.toString()[0].toUpperCase() + str.toString().slice(1)
 }
 export { firstUpperCase }
 
 // Warn
-export function warnProp (component, prop, correctType, wrongType) {
+export function warnProp(component, prop, correctType, wrongType) {
   correctType = firstUpperCase(correctType)
   wrongType = firstUpperCase(wrongType)
   console.error(
@@ -99,7 +99,7 @@ export function warnProp (component, prop, correctType, wrongType) {
   ) // eslint-disable-line
 }
 
-function typeOf (obj) {
+function typeOf(obj) {
   const toString = Object.prototype.toString
   const map = {
     '[object Boolean]': 'boolean',
@@ -117,7 +117,7 @@ function typeOf (obj) {
 }
 
 // deepCopy
-function deepCopy (data) {
+function deepCopy(data) {
   const t = typeOf(data)
   let o
 
@@ -144,7 +144,7 @@ function deepCopy (data) {
 export { deepCopy }
 
 // scrollTop animation
-export function scrollTop (el, from = 0, to, duration = 500, endCallback) {
+export function scrollTop(el, from = 0, to, duration = 500, endCallback) {
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame =
       window.webkitRequestAnimationFrame ||
@@ -157,7 +157,7 @@ export function scrollTop (el, from = 0, to, duration = 500, endCallback) {
   const difference = Math.abs(from - to)
   const step = Math.ceil((difference / duration) * 50)
 
-  function scroll (start, end, step) {
+  function scroll(start, end, step) {
     if (start === end) {
       endCallback && endCallback()
       return
@@ -179,7 +179,7 @@ export function scrollTop (el, from = 0, to, duration = 500, endCallback) {
 }
 
 // Find components upward
-function findComponentUpward (context, componentName, componentNames) {
+function findComponentUpward(context, componentName, componentNames) {
   if (typeof componentName === 'string') {
     componentNames = [componentName]
   } else {
@@ -197,7 +197,7 @@ function findComponentUpward (context, componentName, componentNames) {
 export { findComponentUpward }
 
 // Find component downward
-export function findComponentDownward (context, componentName) {
+export function findComponentDownward(context, componentName) {
   const childrens = context.$children
   let children = null
 
@@ -217,7 +217,7 @@ export function findComponentDownward (context, componentName) {
 }
 
 // Find components downward
-export function findComponentsDownward (context, componentName) {
+export function findComponentsDownward(context, componentName) {
   return context.$children.reduce((components, child) => {
     if (child.$options.name === componentName) components.push(child)
     const foundChilds = findComponentsDownward(child, componentName)
@@ -226,7 +226,7 @@ export function findComponentsDownward (context, componentName) {
 }
 
 // Find components upward
-export function findComponentsUpward (context, componentName) {
+export function findComponentsUpward(context, componentName) {
   let parents = []
   const parent = context.$parent
   if (parent) {
@@ -238,7 +238,7 @@ export function findComponentsUpward (context, componentName) {
 }
 
 // Find brothers components
-export function findBrothersComponents (context, componentName, exceptMe = true) {
+export function findBrothersComponents(context, componentName, exceptMe = true) {
   let res = context.$parent.$children.filter(item => {
     return item.$options.name === componentName
   })
@@ -253,7 +253,7 @@ const trim = function (string) {
 }
 
 /* istanbul ignore next */
-export function hasClass (el, cls) {
+export function hasClass(el, cls) {
   if (!el || !cls) return false
   if (cls.indexOf(' ') !== -1) {
     throw new Error('className should not contain space.')
@@ -266,7 +266,7 @@ export function hasClass (el, cls) {
 }
 
 /* istanbul ignore next */
-export function addClass (el, cls) {
+export function addClass(el, cls) {
   if (!el) return
   let curClass = el.className
   const classes = (cls || '').split(' ')
@@ -289,7 +289,7 @@ export function addClass (el, cls) {
 }
 
 /* istanbul ignore next */
-export function removeClass (el, cls) {
+export function removeClass(el, cls) {
   if (!el || !cls) return
   const classes = cls.split(' ')
   let curClass = ' ' + el.className + ' '
@@ -319,14 +319,14 @@ export const dimensionMap = {
   xl: '1600px'
 }
 
-export function setMatchMedia () {
+export function setMatchMedia() {
   if (typeof window !== 'undefined') {
     const matchMediaPolyfill = mediaQuery => {
       return {
         media: mediaQuery,
         matches: false,
-        on () {},
-        off () {}
+        on() {},
+        off() {}
       }
     }
     window.matchMedia = window.matchMedia || matchMediaPolyfill
