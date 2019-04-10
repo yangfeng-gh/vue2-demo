@@ -1,18 +1,16 @@
-export default {
-  get: function (obj, key, defaultValue) {
-    return void 0 ===
-      (obj = (key.split ? key.split('.') : key).reduce(function (obj, key) {
-        return obj && obj[key]
-      }, obj)) ?
-      defaultValue
-      : obj
-  },
-  set: function (obj, key, value, i) {
-    return (
-      ((key = key.split ? key.split('.') : key).slice(0, -1).reduce(function (obj, key) {
-        return (obj[key] = obj[key] || {})
-      }, obj)[key.pop()] = value),
-      obj
-    )
-  }
+export function get(object, path, def) {
+  return (object = (path.split ? path.split('.') : path).reduce(function (obj, p) {
+    return obj && obj[p]
+  }, object)) === undefined ?
+    def
+    : object
+}
+
+export function set(object, path, val) {
+  return (
+    ((path = path.split ? path.split('.') : path).slice(0, -1).reduce(function (obj, p) {
+      return (obj[p] = obj[p] || {})
+    }, object)[path.pop()] = val),
+    object
+  )
 }

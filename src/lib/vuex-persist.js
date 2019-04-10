@@ -1,4 +1,4 @@
-import * as shvl from 'shvl'
+import * as shvl from './shvl'
 
 export default function (options, storage, key) {
   options = options || {}
@@ -25,7 +25,10 @@ export default function (options, storage, key) {
     return undefined
   }
 
-  function filter() {
+  function filter(mutation) {
+    if (options.path) {
+      return options.path.includes(mutation.type)
+    }
     return true
   }
 
@@ -53,9 +56,9 @@ export default function (options, storage, key) {
 
   return function (store) {
     const savedState = shvl.get(options, 'getState', getState)(key, storage)
-
     if (typeof savedState === 'object' && savedState !== null) {
-      store.replaceState(Object.assign({}, store.state, JSON.parse(localStorage.getItem(key))))
+      let state = Object.assign({}, store.state, savedState)
+      store.replaceState(state)
     }
 
     (options.subscriber || subscriber)(store)(function (mutation, state) {
@@ -68,4 +71,4 @@ export default function (options, storage, key) {
       }
     })
   }
-};
+}
