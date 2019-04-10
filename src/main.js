@@ -5,10 +5,11 @@ import App from './App'
 import router from './router'
 import store from './store'
 import iView from 'iview'
-import '@/styles/index.less'
+import 'iview/dist/styles/iview.css'
 import Raven from 'raven-js'
 import RavenVue from 'raven-js/plugins/vue'
-
+import 'api/mock-data'
+import '@/styles/index.less'
 import('../config').then(c => console.log(c.dev.env))
 
 Vue.use(iView)
@@ -21,14 +22,14 @@ Raven.config('https://9d2cc9dc027d4a6994e78d8214569737@sentry.io/240008')
   .install()
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.length < 2) {
-    next({ name: 'scopeSlot' })
-  } else {
-    next()
-  }
+  iView.LoadingBar.start()
+  next()
 })
 
-router.afterEach((to, from) => {})
+router.afterEach((to, from) => {
+  iView.LoadingBar.finish()
+  window.scrollTo(0, 0)
+})
 
 /* eslint-disable no-new */
 new Vue({

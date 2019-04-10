@@ -15,11 +15,11 @@ Vue.component('my-counter', {
     }
   },
   methods: {
-    plus () {
+    plus() {
       this.val = this.val + 1
       this.$emit('input', this.val) // 触发 input 事件，并传入新值
     },
-    minus () {
+    minus() {
       if (this.val > 0) {
         this.val = this.val - 1
         this.$emit('input', this.val) // 触发 input 事件，并传入新值

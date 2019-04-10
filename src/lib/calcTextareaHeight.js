@@ -146,7 +146,7 @@ const SIZING_STYLE = [
 let computedStyleCache = {}
 let hiddenTextarea
 
-function calculateNodeStyling (node, useCache = false) {
+function calculateNodeStyling(node, useCache = false) {
   const nodeRef = node.getAttribute('id') || node.getAttribute('data-reactid') || node.getAttribute('name')
 
   if (useCache && computedStyleCache[nodeRef]) {
@@ -182,7 +182,7 @@ function calculateNodeStyling (node, useCache = false) {
   return nodeInfo
 }
 
-export default function calcTextareaHeight (uiTextNode, minRows = null, maxRows = null, useCache = false) {
+export default function calcTextareaHeight(uiTextNode, minRows = null, maxRows = null, useCache = false) {
   if (!hiddenTextarea) {
     hiddenTextarea = document.createElement('textarea')
     document.body.appendChild(hiddenTextarea)

@@ -5,7 +5,7 @@ import LStorage from './LStorage'
  * @param {*} lsKey 保存在localStorage中的key
  * @param {*} pk    一级属性的key
  */
-function createHanlder (lsKey, pk) {
+function createHanlder(lsKey, pk) {
   return {
     set: function (target, key, value, receiver) {
       let item = LStorage.getItem(lsKey)
@@ -23,7 +23,7 @@ function createHanlder (lsKey, pk) {
  * @param {*} source
  * @param {*} keys
  */
-function copy (source, keys = []) {
+function copy(source, keys = []) {
   if (!source) {
     return source
   }

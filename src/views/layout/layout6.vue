@@ -1,4 +1,4 @@
-<!-- 响应式布局 -->
+<!-- 自定义触发器 -->
 <style scoped>
 .layout {
   border: 1px solid #d7dde4;
@@ -10,6 +10,19 @@
 .layout-header-bar {
   background: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.layout-logo-left {
+  width: 90%;
+  height: 30px;
+  background: #5b6270;
+  border-radius: 3px;
+  margin: 15px auto;
+}
+.menu-icon {
+  transition: all 0.3s;
+}
+.rotate-icon {
+  transform: rotate(-90deg);
 }
 .menu-item span {
   display: inline-block;
@@ -40,7 +53,8 @@
 <template>
   <div class="layout">
     <Layout>
-      <Sider breakpoint="md"
+      <Sider ref="side1"
+             hide-trigger
              collapsible
              :collapsed-width="78"
              v-model="isCollapsed">
@@ -61,11 +75,17 @@
             <span>Option 3</span>
           </menu-item>
         </Menu>
-        <div slot="trigger"></div>
       </Sider>
       <Layout>
-        <Header class="layout-header-bar"></Header>
-        <Content :style="{margin: '20px', background: '#fff', minHeight: '220px'}">
+        <Header :style="{padding: 0}"
+                class="layout-header-bar">
+          <Icon @click.native="collapsedSider"
+                :class="rotateIcon"
+                :style="{margin: '20px 20px 0'}"
+                type="navicon-round"
+                size="24"></Icon>
+        </Header>
+        <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
           Content
         </Content>
       </Layout>
@@ -74,17 +94,28 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       isCollapsed: false
     }
   },
   computed: {
-    menuitemClasses: function () {
+    rotateIcon() {
+      return [
+        'menu-icon',
+        this.isCollapsed ? 'rotate-icon' : ''
+      ]
+    },
+    menuitemClasses() {
       return [
         'menu-item',
         this.isCollapsed ? 'collapsed-menu' : ''
       ]
+    }
+  },
+  methods: {
+    collapsedSider() {
+      this.$refs.side1.toggleCollapse()
     }
   }
 }

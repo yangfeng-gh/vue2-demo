@@ -27,6 +27,7 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
+      title: 'vue2-demo',
       filename: 'index.html',
       template: './src/template/index.ejs',
       inject: false

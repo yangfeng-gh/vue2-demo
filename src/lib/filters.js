@@ -7,11 +7,11 @@
  */
 
 const float = (val) => {
-    return parseFloat(val)
+  return parseFloat(val)
 }
 
 const int = (val) => {
-    return parseInt(val)
+  return parseInt(val)
 }
 
 export {

@@ -1,23 +1,23 @@
 const ls = window.localStorage
 // https://github.com/tsironis/lockr
 export default {
-  getItem (key) {
+  getItem(key) {
     try {
       return JSON.parse(ls.getItem(key))
     } catch (err) {
       return null
     }
   },
-  setItem (key, val) {
+  setItem(key, val) {
     ls.setItem(key, JSON.stringify(val))
   },
-  clear () {
+  clear() {
     ls.clear()
   },
-  keys () {
+  keys() {
     return ls.keys()
   },
-  removeItem (key) {
+  removeItem(key) {
     ls.removeItem(key)
   }
 }

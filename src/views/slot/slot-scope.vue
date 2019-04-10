@@ -51,7 +51,7 @@ import TodoList from './todo-list'
 export default {
   name: 'SlotScope',
   components: { TodoList },
-  data () {
+  data() {
     return {
       todos: [
         {
@@ -69,7 +69,7 @@ export default {
     }
   },
   methods: {
-    onClick (e) {
+    onClick(e) {
       console.log(e)
     }
   }

@@ -12,16 +12,16 @@
 export default {
   name: 'EventSelf',
   methods: {
-    onClickDiv (e) {
+    onClickDiv(e) {
       console.log(e)
     },
-    onClickBtn (e) {
+    onClickBtn(e) {
       console.log(e)
     },
-    onClickSpan (e) {
+    onClickSpan(e) {
       console.log(e)
     },
-    onClickA (e) {
+    onClickA(e) {
       console.log(e)
     }
   }
