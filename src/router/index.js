@@ -56,12 +56,12 @@ export default new Router({
       component: Layout8
     },
     {
-      path: '/layout',
+      path: '/',
       name: 'layout9',
       component: Layout9,
       children: [
         {
-          path: 'scope/slot',
+          path: '',
           name: 'scopeSlot',
           component: resolve => require(['../views/slot/slot-scope.vue'], resolve)
         },
