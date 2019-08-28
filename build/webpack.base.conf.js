@@ -33,7 +33,8 @@ module.exports = {
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
-        enforce: 'pre',
+        // enforce这个属性要注意一下，之前的preLoader被剔除了，但webpack2还是提供了代替方案。
+        enforce: 'pre', // post, inline, normal, pre
         include: [resolve('src'), resolve('test')],
         options: {
           formatter: require('eslint-friendly-formatter')
