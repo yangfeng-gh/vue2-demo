@@ -46,7 +46,7 @@
       </Menu>
     </Sider>
     <Layout :style="{marginLeft: '200px'}">
-      <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">固定侧边栏 —— 当内容较长时，使用固定侧边栏可以提供更好的体验。</Header>
+      <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">固定侧边栏 —— 当内容较长时，使用固定侧边栏可以提供更好的体验。。。。</Header>
       <Content :style="{padding: '0 16px 16px'}">
         <Breadcrumb :style="{margin: '16px 0'}">
           <BreadcrumbItem>Home</BreadcrumbItem>

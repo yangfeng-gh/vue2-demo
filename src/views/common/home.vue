@@ -14,19 +14,22 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {}
-    }
+export default {
+  data() {
+    return {}
   }
+}
 </script>
 
-<style scoped>
-  .layout-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+<style lang="less" scoped>
+.layout-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+  padding: 24px;
+  a {
+    margin: 6px;
+    text-decoration: underline;
   }
+}
 </style>
